@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>Social News</title>
+  </head>
+
+  <body>
+    <h1>Social News</h1>
+    <nav>
+      <a href="{% url 'all' %}">View All</a> | 
+      <a href="{% url 'submit' %}">Submit</a>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+
+</html>

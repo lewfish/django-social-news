@@ -1,0 +1,12 @@
+{% extends "social_news/base.html" %}
+
+{% block content %}
+{% for entry in entries %}
+<form method="post" action="{% url 'vote' %}">
+  {% csrf_token %}
+  <input type="hidden" name="entry_pk" value="{{entry.pk}}"/>
+  <a href = "{{entry.link}}">{{entry.title}}</a> <input type="submit" value="+1"/>
+  <br>Posted: {{entry.post_date}} Votes: {{entry.vote_count}}  
+</form>
+{% endfor %}
+{% endblock %}
