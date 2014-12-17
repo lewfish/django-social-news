@@ -1,16 +1,24 @@
 {% extends "social_news/base.html" %}
-<br>
+
 {% block content %}
+<style>
+  .entry-link {
+  font-size: 18px;
+  }
+  .entry-info {
+  font-size: 12px;
+  padding-bottom: 7px;
+  }
+</style>
+
 {% for entry in entries %}
-<form method="post" action="{% url 'vote' %}">
-  {% csrf_token %}
-
-  <input type="hidden" name="entry_pk" value="{{entry.pk}}"/>
-  <a href = "{{entry.link}}">{{entry.title}}</a> 
-  <br>Author: {{entry.author}}
-  <br>Posted: {{entry.post_date}} 
-  <br><input type="submit" value="+"/> Votes: {{entry.num_votes}}  
-
-</form>
+{% csrf_token %}
+<div class = "entry-link">
+  <a href = "{{entry.link}}" >{{entry.title}}</a>
+</div>
+<div class = "entry-info">
+  <span class="glyphicon glyphicon-thumbs-up"></span>    
+  {{entry.num_votes}} points by {{entry.author}} {{entry.post_date | timesince}} ago
+</div>
 {% endfor %}
 {% endblock %}

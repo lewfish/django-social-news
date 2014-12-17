@@ -1,20 +1,36 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Social News</title>
-  </head>
+<head>
+  <title>Social News</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+</head>
 
-  <body>
-    <h1>Social News</h1>
-    <nav>
-      <a href="{% url 'all' %}">Home</a> | 
-      <a href="{% url 'submit' %}">Submit</a> |
-      <a href="{% url 'signup' %}">Sign Up</a> |
-      <a href="{% url 'login' %}">Log In</a> |
-      <a href="{% url 'logout' %}">Log Out</a>
-    </nav>
-    <br>
-    {% block content %}
-    {% endblock %}
-  </body>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+	<a class="navbar-brand" href="{% url 'all' %}">Social News</a>
+      </div>
+      <div>
+	<ul class="nav navbar-nav">
+          <li><a href="{% url 'submit' %}">Submit</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li> 
+          <li><a href="{% url 'login' %}">Log In</a></li> 
+          <li><a href="{% url 'logout' %}">Log Out</a></li> 
+	</ul>
+      </div>
+    </div>
+  </nav>
 
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</body>
 </html>
