@@ -4,9 +4,12 @@ from django.core.urlresolvers import reverse
 
 from . import models
 
+
 def all(request):
-    entries = sorted(models.Entry.objects.all(), key = lambda e: e.num_votes, reverse = True)
-    return render(request, 'social_news/all.html', {"entries" : entries})
+    entries = models.Entry.objects.all()
+    scores = map(lambda e: e.compute_score(), entries)
+    sorted_entries = [e for s,e in sorted(zip(scores, entries), reverse=True)]
+    return render(request, 'social_news/all.html', {"entries" : sorted_entries})
 
 def vote(request):
     if request.method == 'POST':
