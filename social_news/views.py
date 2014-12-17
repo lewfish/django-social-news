@@ -11,9 +11,12 @@ def all(request):
 def vote(request):
     if request.method == 'POST':
         pk = request.POST["entry_pk"]
-        vote = models.Vote(entry = models.Entry.objects.get(pk=pk),
-                           voter = request.user)
-        vote.save()
+        entry = models.Entry.objects.get(pk=pk)
+        #if user hasn't voted on the entry yet
+        if models.Vote.objects.filter(entry=entry, voter= request.user).count() == 0:
+            vote = models.Vote(entry = entry,
+                               voter = request.user)
+            vote.save()
     return redirect("all")
 
 class EntryCreateView(CreateView):

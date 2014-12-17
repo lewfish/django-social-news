@@ -6,12 +6,13 @@
   <body>
     <h1>Social News</h1>
     <nav>
-      <a href="{% url 'all' %}">View All</a> | 
+      <a href="{% url 'all' %}">Home</a> | 
       <a href="{% url 'submit' %}">Submit</a> |
+      <a href="{% url 'signup' %}">Sign Up</a> |
       <a href="{% url 'login' %}">Log In</a> |
-      <a href="{% url 'logout' %}">Log Out</a> |
-      <a href="{% url 'signup' %}">Sign Up</a>
+      <a href="{% url 'logout' %}">Log Out</a>
     </nav>
+    <br>
     {% block content %}
     {% endblock %}
   </body>
