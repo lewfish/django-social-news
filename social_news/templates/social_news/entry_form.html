@@ -1,10 +1,16 @@
 {% extends "social_news/base.html" %}
 
 {% block content %}
+<style>
+#id_title, #id_link {
+width: 400px;
+}
+</style>
+
 <form action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Create" />
+  <input type="submit" value="Submit" />
 </form>
 {% endblock %}
 
