@@ -3,22 +3,34 @@
 {% block content %}
 <style>
   .entry-link {
-  font-size: 18px;
+    font-size: 18px;
   }
   .entry-info {
-  font-size: 12px;
-  padding-bottom: 7px;
+    font-size: 12px;
+    padding-bottom: 7px;
   }
 </style>
 
-{% for entry in entries %}
+{% for entry, voted in entries %}
 {% csrf_token %}
 <div class = "entry-link">
   <a href = "{{entry.link}}" >{{entry.title}}</a>
 </div>
 <div class = "entry-info">
-  <span class="glyphicon glyphicon-thumbs-up"></span>    
-  {{entry.num_votes}} points by {{entry.author}} {{entry.post_date | timesince}} ago
+  {% if not voted %}
+  <span class="glyphicon glyphicon-thumbs-up vote-btn" entry-pk="{{entry.pk}}"></span> 
+  {% endif %}  
+  <span id="num-votes-{{entry.pk}}">{{entry.num_votes}}</span> points by {{entry.author}} {{entry.post_date | timesince}} ago
+
 </div>
 {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+{% load staticfiles %}
+<script>
+  var vote_url = "{% url 'vote' %}";
+  var csrf_token = "{{ csrf_token }}"
+</script>
+<script src="{% static 'social_news/vote_button.js' %}"></script>
 {% endblock %}
