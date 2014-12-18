@@ -1,3 +1,6 @@
+//listens for a click on vote buttons
+//upon a click, it posts a vote, hides the button, and updates the 
+//number of votes
 $(document).ready(function() {
     $('.vote-btn').click(function(){
 	var vote_button = $(this);

@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from . import models
 
 def all(request):
+    """View of all submitted entries"""
     entries = models.Entry.objects.all()
     scores = map(lambda e: e.compute_score(), entries)
     sorted_entries = [e for s,e in sorted(zip(scores, entries), reverse=True)]
@@ -19,9 +20,11 @@ def all(request):
                   {"entries" : zip(sorted_entries, sorted_voted)})
 
 def voted(entry, user):
+    """True if user voted on entry"""
     return models.Vote.objects.filter(entry = entry, voter = user).count() > 0
 
 def vote(request):
+    """View for posting votes"""
     num_votes = 0
     if request.method == 'POST':
         pk = request.POST["entry_pk"]
@@ -33,11 +36,14 @@ def vote(request):
         num_votes = entry.num_votes
     return HttpResponse(num_votes)
 
+
 class EntryCreateView(CreateView):
+    """View for creating a new Entry"""
     model = models.Entry
     fields = ['title', 'link']
 
     def form_valid(self, form):
+        """Used to associate an entry with the user that submitted it"""
         entry = form.save(commit=False)
         entry.author = self.request.user
         entry.save()
