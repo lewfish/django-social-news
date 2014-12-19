@@ -1,9 +1,9 @@
 django-social-news
 ===================
 
-A very simple social news site implemented in Python/Django as an exercise in learning to make web apps.
+A very simple social news site using Python, Django and Bootstrap.
 
-Right now, it doesn't do user authentication and the interface is bare-bones.
+<a href="lewfish-django-social-news.herokuapp.com>Here</a> is a demo, hosted on Heroku. It might be take a few seconds to load.
 
 
 

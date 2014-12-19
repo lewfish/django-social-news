@@ -22,7 +22,7 @@ class Entry(models.Model):
         age_delta = datetime.datetime.utcnow() - self.post_date.replace(tzinfo=None)
         hour_age = age_delta.days * 24 + age_delta.seconds // 3600
         return (self.num_votes - 1) / pow((hour_age + 2), gravity)
-
+    
 class Vote(models.Model):
     entry = models.ForeignKey(Entry, null=True)
     voter = models.ForeignKey(User, null=True)
