@@ -12,7 +12,7 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-<a href="http://lewfish-django-social-news.herokuapp.com">Here</a> is a demo hosted on Heroku. It might be take a few seconds to load.
+<a href="http://lewfish-django-social-news.herokuapp.com">Here</a> is a demo hosted on Heroku. It might take a few seconds to load.
 
 
 
